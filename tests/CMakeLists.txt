@@ -7,6 +7,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED 17)
 set(SOURCE_FILES testMain.cpp
                  lib_Tests.cpp)
 
+set(INCLUDE_DIRS ../include/detail ../include/interface ../include/lib)
+
 add_executable (allTests ${SOURCE_FILES})
-target_link_libraries(allTests PRIVATE catch2 lib)
-target_include_directories(allTests PRIVATE ../include/lib ../include/detail)
+target_link_libraries(allTests PRIVATE catch2 libAoC)
+target_include_directories(allTests PRIVATE ${INCLUDE_DIRS})
