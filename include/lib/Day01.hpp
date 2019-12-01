@@ -1,26 +1,20 @@
 #pragma once
-#include <iostream>
-#include <fstream>
-#include <vector>
-#include <unordered_set>
+
+#include "Day.hpp"
 
 namespace aoc2018 {
 
-
-    class Day01 {
+    class Day01 : public Day {
     public:
         Day01();
+        Day01(uint8_t id, std::string name, std::string url,
+              std::string data_file
+        );
+        ~Day01() override;
 
-        int64_t count_part1();
-        int64_t count_part2();
+        void calculate_part1() override;
+        void calculate_part2() override;
 
-        void print_result();
-
-    private:
-        void set_data();
-        const std::string name;//  = "Day 01: Chronal Calibration.";
-        const std::string url; //   = "URL   : https://adventofcode.com/2018/day/1";
-        const std::vector<int8_t> v;
     };
 
 }

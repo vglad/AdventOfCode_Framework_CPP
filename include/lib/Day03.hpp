@@ -4,10 +4,10 @@
 
 namespace aoc2018 {
 
-    class Day02 : public Day {
+    class Day03 : public Day {
     public:
-        Day02();
-        Day02(uint8_t id, std::string name, std::string url,
+        Day03();
+        Day03(uint8_t id, std::string name, std::string url,
               std::string data_file
         );
 

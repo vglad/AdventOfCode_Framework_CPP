@@ -10,13 +10,13 @@ namespace aoc2018 {
                   << info[day].url  << "\n";
     }
 
-    void Days::calculate(uint8_t day) {
-        return;
-    }
-
     void Days::print_result(uint8_t day) noexcept {
         std::cout << "Part 1 answer: " << answers[day].part1 << "\n"
                   << "Part 2 answer: " << answers[day].part2 << "\n\n";
+    }
+
+    void Days::calculate(uint8_t day) {
+
     }
 
 }
