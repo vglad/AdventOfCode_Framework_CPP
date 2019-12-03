@@ -7,6 +7,7 @@
 #include <stdexcept>
 #include <cstring>
 #include <ostream>
+#include <memory>
 
 namespace Helper {
 

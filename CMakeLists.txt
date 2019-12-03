@@ -1,5 +1,5 @@
 cmake_minimum_required (VERSION 3.5)
-project(aoc2018)
+project(aoc2019)
 
 add_subdirectory(thirdparty/catch2)
 add_subdirectory(src/lib)

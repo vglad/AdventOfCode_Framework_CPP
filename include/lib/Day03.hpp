@@ -1,12 +1,14 @@
 #pragma once
 
+#include <fstream>
+#include <cmath>
+
 #include "Day.hpp"
 
 namespace aoc2019 {
 
     class Day03 : public Day {
     public:
-        Day03();
         Day03(uint8_t id, std::string name, std::string url,
               std::string data_file
         );
