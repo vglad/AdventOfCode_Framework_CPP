@@ -2,6 +2,9 @@
 
 namespace aoc2019 {
 
+    Factory::Factory() = default;
+    Factory::~Factory() = default;
+
     const std::vector<Factory::Data> Factory::info = {
             {"Unknown day number","",""},
             {"Day 1: The Tyranny of the Rocket Equation.",

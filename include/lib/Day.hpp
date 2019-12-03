@@ -11,9 +11,11 @@ namespace aoc2019 {
 
     class Day : public IDay {
     public:
+        Day();
         Day(uint8_t id_, std::string name_, std::string url_,
             std::string data_file_
         );
+        ~Day() override;
 
         void print_header()  noexcept override;
         void print_results() noexcept override;

@@ -2,10 +2,12 @@
 
 namespace aoc2019 {
 
+    Day01::Day01() = default;
     Day01::Day01(uint8_t id, std::string name, std::string url,
                  std::string data_file)
           : Day(id, std::move(name), std::move(url), std::move(data_file)) {
     }
+    Day01::~Day01() = default;
 
     void Day01::calculate_part1() {
         int64_t i{0}, result{0};

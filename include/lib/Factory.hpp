@@ -11,7 +11,8 @@ namespace aoc2019 {
 
     class Factory {
     public:
-
+        Factory();
+        ~Factory();
         template<typename DAY, uint8_t ID> std::unique_ptr<Day> createDay();
         std::unique_ptr<Day> createDay(uint8_t id);
 
