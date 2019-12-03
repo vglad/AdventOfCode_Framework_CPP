@@ -7,7 +7,7 @@
 
 #include "IDay.hpp"
 
-namespace aoc2018 {
+namespace aoc2019 {
 
     class Day : public IDay {
     public:
@@ -15,7 +15,6 @@ namespace aoc2018 {
         Day(uint8_t id_, std::string name_, std::string url_,
             std::string data_file_
         );
-        ~Day() override = default;
 
         void print_header()  noexcept override;
         void print_results() noexcept override;

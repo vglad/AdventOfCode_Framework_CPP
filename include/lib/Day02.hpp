@@ -2,7 +2,7 @@
 
 #include "Day.hpp"
 
-namespace aoc2018 {
+namespace aoc2019 {
 
     class Day02 : public Day {
     public:

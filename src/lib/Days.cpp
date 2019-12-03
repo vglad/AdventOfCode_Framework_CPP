@@ -1,6 +1,6 @@
 #include "Days.hpp"
 
-namespace aoc2018 {
+namespace aoc2019 {
 
     Days::Days()    = default;
     Days::~Days()   = default;

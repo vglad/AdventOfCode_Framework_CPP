@@ -1,6 +1,6 @@
 #include "Day02.hpp"
 
-namespace aoc2018 {
+namespace aoc2019 {
 
     Day02::Day02() = default;
     Day02::Day02(uint8_t id, std::string name, std::string url,

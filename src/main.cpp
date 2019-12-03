@@ -4,10 +4,12 @@
 #include "Factory.hpp"
 
 int main() {
-    using namespace aoc2018;
+    using namespace aoc2019;
 
-    const uint8_t total_days = 3;
-    for (auto [factory, day_id] = std::pair(Factory{}, 1); day_id <= total_days; ++day_id) {
+
+    for (auto [factory, total_days, day_id] = std::tuple(Factory{}, 3, 1);
+         day_id <= total_days; ++day_id)
+    {
         std::unique_ptr<Day> day{factory.createDay(day_id)};
         day->calculate_part1();
         day->calculate_part2();

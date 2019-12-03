@@ -7,16 +7,14 @@
 #include "Day02.hpp"
 #include "Day03.hpp"
 
-namespace aoc2018 {
+namespace aoc2019 {
 
     class Factory {
     public:
-        Factory();
-        ~Factory();
 
-        template<typename DayType>
-        std::unique_ptr<DayType> createDayHelper(uint8_t id);
+        template<typename DAY, uint8_t ID> std::unique_ptr<Day> createDay();
         std::unique_ptr<Day> createDay(uint8_t id);
+
     private:
         struct Data {
             std::string name, url, input_data_file;

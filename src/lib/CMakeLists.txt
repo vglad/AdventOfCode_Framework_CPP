@@ -14,4 +14,5 @@ add_library(libAoC SHARED STATIC
         ../../include/lib/Day03.hpp Day03.cpp
         ../../include/lib/Factory.hpp Factory.cpp
         )
+
 target_include_directories(libAoC PRIVATE ${INCLUDE_DIRS})

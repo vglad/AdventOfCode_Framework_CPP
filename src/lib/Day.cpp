@@ -3,7 +3,7 @@
 
 #include "Day.hpp"
 
-namespace aoc2018 {
+namespace aoc2019 {
 
     Day::Day() = default;
     Day::Day(uint8_t id_, std::string name_, std::string url_,
@@ -15,7 +15,7 @@ namespace aoc2018 {
     }
 
     void Day::print_header() noexcept {
-        std::cout << name << "  " << url  << "\n";
+        std::cout << name << "\n" << url  << "\n";
     }
 
     void Day::print_results() noexcept {
@@ -23,10 +23,7 @@ namespace aoc2018 {
                   << "Part 2 answer: " << p2_result << "\n\n";
     }
 
-    void Day::calculate_part1() {
-    }
-
-    void Day::calculate_part2() {
-    }
+    void Day::calculate_part1() {}
+    void Day::calculate_part2() {}
 
 }
