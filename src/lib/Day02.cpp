@@ -10,11 +10,9 @@ namespace aoc2019 {
     Day02::~Day02() = default;
 
     void Day02::calculate_part1() {
-        p1_result = "21";
     }
 
     void Day02::calculate_part2() {
-        p2_result = "22";
     }
 
 }

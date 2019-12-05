@@ -1,10 +1,5 @@
-#include <sstream>
 #include <iostream>
-#include <unordered_set>
-#include <unordered_map>
-#include <memory>
 #include <string>
-#include <array>
 
 #include "Precompiled.hpp"
 #include "Day03.hpp"
@@ -20,19 +15,18 @@ namespace aoc2019 {
     Day03::~Day03() = default;
 
 
-    void Day03::draw_step (int64_t x_pos, int64_t y_pos, int8_t comparator) {
-        if (map[y_pos][x_pos] == comparator && y_pos != 0 && x_pos != 0) {
-            map[y_pos][x_pos] = comparator + 1;
+    void Day03::draw_step (uint16_t x_pos, uint16_t y_pos, uint8_t comparator) {
+        if (map[y_pos][x_pos] == comparator) {
+            map[y_pos][x_pos] += 1;
         }
     }
 
-
     void Day03::create_wire_path (const std::vector<std::string> &wire,
-                                  int64_t y_pos, int64_t x_pos, int8_t comparator)
+                                  uint16_t y_pos, uint16_t x_pos, uint8_t comparator)
     {
         for (const auto & e : wire) {
             const std::string direction{e.substr(0, 1)};
-            int64_t path = stoi(e.substr(1));
+            auto path = stoi(e.substr(1));
             while (path > 0) {
                 if (direction == "R") {
                     draw_step(x_pos, y_pos, comparator);
@@ -52,30 +46,53 @@ namespace aoc2019 {
         }
     }
 
-    void Day03::calculate_part1() {
-        std::string sw1, sw2;
-        const int64_t dimension {200};
-        int64_t y_pos = dimension / 2, x_pos = dimension / 2;
+    auto Day03::get_cross_map(uint32_t start_x, uint32_t start_y) -> std::vector<std::pair<int32_t, int32_t>>{
+        std::vector<std::pair<int32_t, int32_t>> crossing {};
+        map[start_x][start_y] = 0;
+        for (auto i = 0; i < dimension; ++i){
+            for (auto j = 0; j < dimension; ++j) {
+                if (map[i][j] == 2) {
+                    std::pair<int32_t, int32_t> p {start_y - i, j - start_x};
+                    crossing.emplace_back(p);
+                }
+            }
+        }
+        return std::move(crossing);
+    }
 
+    int32_t Day03::get_min_distance(const std::vector<std::pair<int32_t, int32_t>> &cross_map) {
+        auto comp = [](const std::pair<int32_t, int32_t> & a, const std::pair<int32_t, int32_t> & b) {
+            return (std::abs(a.first) + std::abs(a.second)) < (std::abs(b.first) + std::abs(b.second));
+        };
+        auto minElem = *(std::min_element(begin(cross_map), end(cross_map), comp));
+        return std::abs(minElem.first) + std::abs(minElem.second);
+    }
+
+    void Day03::calculate_part1() {
         std::ifstream in_file(data_file, std::ios::in | std::ios::binary);
         if (in_file) {
-            in_file >> sw1;
-            in_file >> sw2;
+            std::string sw1, sw2;
+            const auto y_pos = dimension / 2, x_pos = dimension / 2;
 
-            std::vector<std::string> w1{tokenize_by_delim<std::vector<std::string>>(sw1, ",")};
-            std::vector<std::string> w2{tokenize_by_delim<std::vector<std::string>>(sw2, ",")};
+            in_file >> sw1;
+            const auto w1 {tokenize_by_delim<std::vector<std::string>>(sw1, ",")};
             create_wire_path(w1, y_pos,x_pos, 0);
+
+            in_file >> sw2;
+            auto w2 {tokenize_by_delim<std::vector<std::string>>(sw2, ",")};
             create_wire_path(w2, y_pos,x_pos, 1);
 
-            p1_result = "Not calculated yet )).";
-
+            auto cross_map = get_cross_map(x_pos, y_pos);
+            set_result(Day::Parts::PARTONE, std::to_string(get_min_distance(cross_map)));
         } else {
-            p1_result = "Data file not found.";
+            set_result(Day::Parts::PARTONE, "Data file not found.");
         }
     }
 
     void Day03::calculate_part2() {
-        p2_result = "32";
+        //std::cout << x << "  " << y << "\n\n";
+        //std::cout << distance << "\n\n";
+
     }
 
 }

@@ -9,18 +9,19 @@ namespace aoc2019 {
             {"Unknown day number","",""},
             {"Day 1: The Tyranny of the Rocket Equation.",
                     "https://adventofcode.com/2019/day/1",
-                    "data/2019day01.txt"},
+                    "data/2019/day01.txt"},
             {"Day 2: 1202 Program Alarm.",
                     "https://adventofcode.com/2019/day/2",
-                    "data/2019day02.txt"},
-            {"Day 03: .",
+                    "data/2019/day02.txt"},
+            {"Day 03: Crossed Wires.",
                     "https://adventofcode.com/2019/day/3",
-                    "data/2019day03.txt"}
+                    "data/2019/day03.txt"}
     };
 
-    template<typename DAY, uint8_t ID> std::unique_ptr<Day> Factory::createDay() {
+    template<typename DAY, uint8_t ID>
+    std::unique_ptr<Day> Factory::createDay() {
         return std::make_unique<DAY>(ID, info[ID].name, info[ID].url,
-                                     info[ID].input_data_file); }
+                                     info[ID].data_file); }
 
     std::unique_ptr<Day> Factory::createDay(uint8_t id) {
         switch (id) {

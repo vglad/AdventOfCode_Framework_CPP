@@ -18,7 +18,7 @@ namespace aoc2019 {
 
     private:
         struct Data {
-            std::string name, url, input_data_file;
+            std::string name, url, data_file;
         };
 
         static const std::vector<Data> info;

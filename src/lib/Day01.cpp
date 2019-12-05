@@ -17,9 +17,9 @@ namespace aoc2019 {
                 result += std::floor(i / 3) - 2;
             }
             in_file.close();
-            p1_result = std::to_string(result);
+            set_result(Parts::PARTONE, std::to_string(result));
         } else {
-            p1_result = "Data file not found.";
+            set_result(Parts::PARTONE, "Data file not found.");
         }
     }
 
@@ -34,9 +34,9 @@ namespace aoc2019 {
                 }
             }
             in_file.close();
-            p2_result = std::to_string(result);
+            set_result(Parts::PARTTWO, std::to_string(result));
         } else {
-            p2_result = "Data file not found.";
+            set_result(Parts::PARTTWO, "Data file not found.");
         }
     }
 
