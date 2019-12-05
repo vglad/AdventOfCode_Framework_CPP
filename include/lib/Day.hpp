@@ -7,7 +7,7 @@
 
 #include "IDay.hpp"
 
-namespace aoc2019 {
+namespace AoC {
 
     class Day : public IDay {
     protected:

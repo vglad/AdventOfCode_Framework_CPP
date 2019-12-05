@@ -4,7 +4,7 @@
 #include "Factory.hpp"
 
 int main() {
-    using namespace aoc2019;
+    using namespace AoC;
 
     for (auto [factory, total_days, day_id] = std::tuple(Factory{}, 3, 1);
          day_id <= total_days; ++day_id)

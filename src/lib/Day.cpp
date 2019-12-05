@@ -3,7 +3,7 @@
 
 #include "Day.hpp"
 
-namespace aoc2019 {
+namespace AoC {
 
     Day::Day() = default;
     Day::Day(uint8_t id_, std::string name_, std::string url_,
