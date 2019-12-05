@@ -15,10 +15,20 @@ namespace AoC {
     Day03::~Day03() = default;
 
 
-    void Day03::draw_step (uint16_t x_pos, uint16_t y_pos, uint8_t comparator) {
+    void Day03::draw_step (uint16_t x_pos, uint16_t y_pos, uint8_t comparator, uint64_t step_num) {
         if (map[y_pos][x_pos] == comparator) {
             map[y_pos][x_pos] += 1;
         }
+
+//        std::pair<uint16_t, uint16_t> p{x_pos, y_pos};
+//        if (comparator == 0) {
+//            uoMap.try_emplace(p, 1);
+//        } else if (comparator == 1) {
+//            auto search = uoMap.find(p);
+//            if (search != uoMap.end()) {
+//                if (search->second == 1) search->second = 2;
+//            }
+//        }
     }
 
     void Day03::create_wire_path (const std::vector<std::string> &wire,
@@ -27,21 +37,23 @@ namespace AoC {
         for (const auto & e : wire) {
             const std::string direction{e.substr(0, 1)};
             auto path = stoi(e.substr(1));
+            uint64_t steps {0};
             while (path > 0) {
+                ++steps;
+                --path;
                 if (direction == "R") {
-                    draw_step(x_pos, y_pos, comparator);
+                    draw_step(x_pos, y_pos, comparator, steps);
                     x_pos += 1;
                 } else if (direction == "L") {
                     x_pos -= 1;
-                    draw_step(x_pos, y_pos, comparator);
+                    draw_step(x_pos, y_pos, comparator, steps);
                 } else if (direction == "D") {
                     y_pos += 1;
-                    draw_step(x_pos, y_pos, comparator);
+                    draw_step(x_pos, y_pos, comparator, steps);
                 } else { //if (direction == "U")
                     y_pos -= 1;
-                    draw_step(x_pos, y_pos, comparator);
+                    draw_step(x_pos, y_pos, comparator, steps);
                 }
-                path -= 1;
             }
         }
     }

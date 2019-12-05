@@ -6,7 +6,7 @@
 int main() {
     using namespace AoC;
 
-    for (auto [factory, total_days, day_id] = std::tuple(Factory{}, 3, 1);
+    for (auto [factory, total_days, day_id] = std::tuple(Factory{}, 3, 3);
          day_id <= total_days; ++day_id)
     {
         std::unique_ptr<Day> day{factory.createDay(day_id)};

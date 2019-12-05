@@ -18,7 +18,7 @@ TEST_CASE("Day03", "[Day03]") {
         }
         SECTION("Part2") {
             d->calculate_part2();
-            REQUIRE(d->get_result(Parts::PARTTWO) == "");
+            REQUIRE(d->get_result(Parts::PARTTWO) == "30");
         }
     }
 
@@ -31,7 +31,7 @@ TEST_CASE("Day03", "[Day03]") {
         }
         SECTION("Part2") {
             d->calculate_part2();
-            REQUIRE(d->get_result(Parts::PARTTWO) == "");
+            REQUIRE(d->get_result(Parts::PARTTWO) == "610");
         }
     }
 
@@ -44,7 +44,7 @@ TEST_CASE("Day03", "[Day03]") {
         }
         SECTION("Part2") {
             d->calculate_part2();
-            REQUIRE(d->get_result(Parts::PARTTWO) == "");
+            REQUIRE(d->get_result(Parts::PARTTWO) == "410");
         }
     }
 

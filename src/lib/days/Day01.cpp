@@ -14,7 +14,7 @@ namespace AoC {
         std::ifstream in_file(data_file);
         if (in_file) {
             while (in_file >> i) {
-                result += std::floor(i / 3) - 2;
+                result += static_cast<int64_t>(std::floor(i / 3)) - 2;
             }
             in_file.close();
             set_result(Parts::PARTONE, std::to_string(result));
@@ -29,7 +29,7 @@ namespace AoC {
         if (in_file) {
             while (in_file >> i) {
                 while (i > 8) {
-                    i = std::floor(i / 3) - 2;
+                    i = static_cast<int64_t>(std::floor(i / 3)) - 2;
                     result += i;
                 }
             }
