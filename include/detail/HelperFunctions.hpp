@@ -31,8 +31,8 @@ namespace Helper {
                                  bool trimEmpty = false)
     {
         std::string::size_type pos, lastPos = 0, length = str.length();
-        ContainerT tokens;
 
+        ContainerT tokens;
         using value_type = typename ContainerT::value_type;
         using size_type  = typename ContainerT::size_type;
 

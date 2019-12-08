@@ -20,15 +20,28 @@ namespace AoC {
         void calculate_part2() override;
 
     private:
-        const uint16_t dimension {30000};
-        uint32_t map[30000][30000] {0};
-        //std::unordered_map< std::pair<uint16_t, uint16_t>, uint8_t > uoMap;
+        struct                pair_hash;
+        using                 Coord =              std::pair<int32_t, int32_t >;
+        using                 Data  =              std::pair<uint8_t, uint32_t >;
+        using                 uMap  =              std::unordered_map<Coord, Data, pair_hash>;
 
-        void create_wire_path (const std::vector<std::string> &wire,
-                               uint16_t y_pos, uint16_t x_pos, uint8_t comparator);
-        void draw_step(uint16_t x_pos, uint16_t y_pos, uint8_t comparator, uint64_t step_num);
-        auto get_cross_map(uint32_t start_x, uint32_t start_y) -> std::vector<std::pair<int32_t, int32_t>>;
-        int32_t get_min_distance(const std::vector<std::pair<int32_t, int32_t>> & cross_map);
+        std::unique_ptr<uMap> cross_u_map;
+        enum class            Run;
+
+        std::unique_ptr<uMap> generate_wire_map   (std::unique_ptr<uMap> u_map,
+                                                   const std::vector<std::string> &path,
+                                                   Run run
+        ) const;
+        std::unique_ptr<uMap> generate_data       (std::unique_ptr<uMap> u_map,
+                                                   int32_t x_pos,
+                                                   int32_t y_pos,
+                                                   Run run,
+                                                   uint32_t step_num
+        ) const;
+        uint16_t        const get_min_distance    (const uMap & u_map
+        ) const;
+        uint32_t        const get_min_delay       (std::unique_ptr<uMap> u_map
+        ) const;
+
     };
-
 }
