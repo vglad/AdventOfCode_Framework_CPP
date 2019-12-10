@@ -116,8 +116,9 @@ namespace AoC {
             case 23: return createDay<Day23, 23>();
             case 24: return createDay<Day24, 24>();
             case 25: return createDay<Day25, 25>();
-            default: return createDay<Day,   0>();
+            default: break;
         }
+        return nullptr;
     }
 
 }

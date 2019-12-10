@@ -6,7 +6,7 @@ namespace AoC {
 
     class Day10 : public Day {
     public:
-        Day10();
+        Day10() = delete;
         Day10(uint8_t id, std::string name, std::string url,
               std::string data_file
         );

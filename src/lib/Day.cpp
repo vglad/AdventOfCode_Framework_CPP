@@ -5,7 +5,7 @@
 
 namespace AoC {
 
-    Day::Day() = default;
+    //Day::Day() = default;
     Day::Day(uint8_t id_, std::string name_, std::string url_,
              std::string data_file_)
         : id{id_}, name{std::move(name_)}, url{std::move(url_)},

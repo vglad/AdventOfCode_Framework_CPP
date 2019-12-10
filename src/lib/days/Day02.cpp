@@ -2,7 +2,6 @@
 
 namespace AoC {
 
-    Day02::Day02() = default;
     Day02::Day02(uint8_t id, std::string name, std::string url,
                  std::string data_file)
           : Day(id, std::move(name), std::move(url), std::move(data_file)) {
