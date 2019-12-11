@@ -8,44 +8,39 @@ using Parts = Day::Parts;
 
 TEST_CASE("Day01", "[Day01]") {
     auto d{Factory().createDay(1)};
-
-    SECTION("Example data test 1") {
+    SECTION("Test data from day01_1.txt") {
         d->set_data_file("2019/data/day01/day01_1.txt");
-
         SECTION("Part1") {
             d->calculate_part1();
-            REQUIRE(d->get_result(Parts::PARTONE) == "34241");
+            REQUIRE(d->get_result(Parts::PartOne) == "34241");
         }
         SECTION("Part2") {
             d->calculate_part2();
-            REQUIRE(d->get_result(Parts::PARTTWO) == "51316");
+            REQUIRE(d->get_result(Parts::PartTwo) == "51316");
         }
-
     }
 
-    SECTION("Example data test 2") {
+    SECTION("Test data from day01_2.txt") {
         d->set_data_file("2019/data/day01/day01_2.txt");
-
         SECTION("Part1") {
             d->calculate_part1();
-            REQUIRE(d->get_result(Parts::PARTONE) == "34239");
+            REQUIRE(d->get_result(Parts::PartOne) == "34239");
         }
         SECTION("Part2") {
             d->calculate_part2();
-            REQUIRE(d->get_result(Parts::PARTTWO) == "51314");
+            REQUIRE(d->get_result(Parts::PartTwo) == "51314");
         }
     }
 
-    SECTION("Original data test") {
+    SECTION("Original test data from day01_3.txt") {
         d->set_data_file("2019/data/day01/day01_3.txt");
-
         SECTION("Part1") {
             d->calculate_part1();
-            REQUIRE(d->get_result(Parts::PARTONE) == "3159380");
+            REQUIRE(d->get_result(Parts::PartOne) == "3159380");
         }
         SECTION("Part2") {
             d->calculate_part2();
-            REQUIRE(d->get_result(Parts::PARTTWO) == "4736213");
+            REQUIRE(d->get_result(Parts::PartTwo) == "4736213");
         }
     }
 }

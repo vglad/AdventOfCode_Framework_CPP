@@ -84,12 +84,13 @@ namespace AoC {
                     "data/2019/day25.txt"}
     };
 
-    template<typename DAY, uint8_t ID>
+    template<typename DAY, int8_t Id>
     std::unique_ptr<Day> Factory::createDay() {
-        return std::make_unique<DAY>(ID, info[ID].name, info[ID].url,
-                                     info[ID].data_file); }
+        return std::make_unique<DAY>(
+                Id, info[Id].name, info[Id].url, info[Id].data_file);
+    }
 
-    std::unique_ptr<Day> Factory::createDay(uint8_t id) {
+    std::unique_ptr<Day> Factory::createDay(int8_t id) {
         switch (id) {
             case 1:  return createDay<Day01, 1>();
             case 2:  return createDay<Day02, 2>();
@@ -116,9 +117,8 @@ namespace AoC {
             case 23: return createDay<Day23, 23>();
             case 24: return createDay<Day24, 24>();
             case 25: return createDay<Day25, 25>();
-            default: break;
+            default: return createDay<Day,   0>();
         }
-        return nullptr;
     }
 
 }

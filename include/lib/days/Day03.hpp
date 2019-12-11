@@ -1,21 +1,19 @@
 #pragma once
+#include "Day.hpp"
 
 #include <fstream>
 #include <cmath>
 #include <unordered_map>
-
-#include "Day.hpp"
 
 namespace AoC {
 
     class Day03 : public Day {
       public:
         Day03() = delete;
-        explicit Day03(
-                int8_t          id,
-                std::string     name,
-                std::string     url,
-                std::string     data_file);
+        explicit Day03( int8_t          id,
+                        std::string     name,
+                        std::string     url,
+                        std::string     data_file);
         ~Day03() override;
 
         void calculate_part1() override;
@@ -35,7 +33,7 @@ namespace AoC {
         auto generate_data(     int32_t      x_pos,
                                 int32_t      y_pos,
                                 Run          run,
-                                int32_t     step_num,
+                                int32_t      step_num,
                                 std::unique_ptr<uMap> u_map
         )-> std::unique_ptr<uMap>;
         auto get_min_distance(  uMap const&           u_map) -> int32_t;

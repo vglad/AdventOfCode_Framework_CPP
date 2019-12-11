@@ -5,14 +5,16 @@
 
 namespace AoC {
 
-    //Day::Day() = default;
-    Day::Day(uint8_t id_, std::string name_, std::string url_,
+    Day::Day(int8_t id_, std::string name_, std::string url_,
              std::string data_file_)
-        : id{id_}, name{std::move(name_)}, url{std::move(url_)},
-          data_file{std::move(data_file_)},
-          p1_result{"Not implemented yet :("},
-          p2_result{"Not implemented yet :("} {
+        : id        {id_},
+          name      {std::move(name_)},
+          url       {std::move(url_)},
+          data_file {std::move(data_file_)},
+          p1_result {"Not implemented yet :("},
+          p2_result {"Not implemented yet :("} {
     }
+
     Day::~Day() = default;
 
     void Day::print_header() noexcept {
@@ -27,26 +29,27 @@ namespace AoC {
     void Day::calculate_all() noexcept {
         try { calculate_part1(); }
         catch (std::exception& e) {
-            std::string info = e.what();
-            set_result(Parts::PARTONE, "Error during calculations: " + info);
+            set_result(Parts::PartOne,
+                      "Error during calculations: " + std::string {e.what()});
         }
         try { calculate_part2(); }
         catch (std::exception& e) {
-            std::string info = e.what();
-            set_result(Parts::PARTTWO, "Error during calculations: " + info);
+            set_result(Parts::PartTwo,
+                      "Error during calculations: " + std::string {e.what()});
         }
     }
 
-    void Day::set_data_file(const std::string &data_file_) noexcept {
+    void Day::set_data_file(std::string const& data_file_) noexcept {
         data_file = data_file_;
     }
 
-    const std::string& Day::get_result(Day::Parts part) noexcept {
-        return part == Parts::PARTONE ? p1_result : p2_result;
+    auto Day::get_result(Day::Parts part) noexcept -> std::string const&
+    {
+        return part == Parts::PartOne ? p1_result : p2_result;
     }
 
-    void Day::set_result(Day::Parts part, const std::string &result) noexcept {
-        part == Parts::PARTONE ? p1_result = result : p2_result = result;
+    void Day::set_result(Day::Parts part, std::string const& result) noexcept {
+        part == Parts::PartOne ? p1_result = result : p2_result = result;
     }
 
     void Day::calculate_part1() {}

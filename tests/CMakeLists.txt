@@ -49,6 +49,7 @@ set(DAY day02)
 configure_file( ${DATA_DIR}/${DAY}/${DAY}_1.txt ${CMAKE_CURRENT_BINARY_DIR}/${DATA_DIR}/${DAY}/${DAY}_1.txt COPYONLY)
 configure_file( ${DATA_DIR}/${DAY}/${DAY}_2.txt ${CMAKE_CURRENT_BINARY_DIR}/${DATA_DIR}/${DAY}/${DAY}_2.txt COPYONLY)
 configure_file( ${DATA_DIR}/${DAY}/${DAY}_3.txt ${CMAKE_CURRENT_BINARY_DIR}/${DATA_DIR}/${DAY}/${DAY}_3.txt COPYONLY)
+configure_file( ${DATA_DIR}/${DAY}/${DAY}_4.txt ${CMAKE_CURRENT_BINARY_DIR}/${DATA_DIR}/${DAY}/${DAY}_4.txt COPYONLY)
 
 #Day03
 set(DAY day03)

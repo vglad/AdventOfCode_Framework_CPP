@@ -65,7 +65,7 @@ namespace Helper {
 //*******************************************************************
 // Creates new container of num type from container of strings
     template<typename ContainerIn, typename ContainerOut>
-    ContainerOut transform_from_str_to_num(std::unique_ptr<ContainerIn> pContIn) {
+    ContainerOut str_to_num(std::unique_ptr<ContainerIn> pContIn) {
         ContainerIn & vIn = *pContIn;
         ContainerOut vOut;
         auto to_num = [&vOut](const std::string & s){ vOut.emplace_back(std::stold(s)); };

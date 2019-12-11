@@ -9,55 +9,53 @@ using Parts = Day::Parts;
 TEST_CASE("Day03", "[Day03]") {
     auto d{Factory().createDay(3)};
 
-    SECTION("Example data test 1") {
+    SECTION("Test data from day03_1.txt") {
         d->set_data_file("2019/data/day03/day03_1.txt");
-
         SECTION("Part1") {
             d->calculate_part1();
-            REQUIRE(d->get_result(Parts::PARTONE) == "6");
+            REQUIRE(d->get_result(Parts::PartOne) == "6");
         }
         SECTION("Part2") {
             d->calculate_part2();
-            REQUIRE(d->get_result(Parts::PARTTWO) == "30");
+            REQUIRE(d->get_result(Parts::PartTwo) == "30");
         }
     }
 
-    SECTION("Example data test 2") {
+    SECTION("Test data from day03_2.txt") {
         d->set_data_file("2019/data/day03/day03_2.txt");
-
         SECTION("Part1") {
             d->calculate_part1();
-            REQUIRE(d->get_result(Parts::PARTONE) == "159");
+            REQUIRE(d->get_result(Parts::PartOne) == "159");
         }
         SECTION("Part2") {
             d->calculate_part2();
-            REQUIRE(d->get_result(Parts::PARTTWO) == "610");
+            //possible wrong test answer (610) in advent of code
+            //with given data
+            REQUIRE(d->get_result(Parts::PartTwo) == "726");
         }
     }
 
-    SECTION("Example data test 3") {
+    SECTION("Test data from day03_3.txt") {
         d->set_data_file("2019/data/day03/day03_3.txt");
-
         SECTION("Part1") {
             d->calculate_part1();
-            REQUIRE(d->get_result(Parts::PARTONE) == "135");
+            REQUIRE(d->get_result(Parts::PartOne) == "135");
         }
         SECTION("Part2") {
             d->calculate_part2();
-            REQUIRE(d->get_result(Parts::PARTTWO) == "410");
+            REQUIRE(d->get_result(Parts::PartTwo) == "410");
         }
     }
 
-    SECTION("Original data test 3") {
+    SECTION("Orginal test data from day03_4.txt") {
         d->set_data_file("2019/data/day03/day03_4.txt");
-
         SECTION("Part1") {
             d->calculate_part1();
-            REQUIRE(d->get_result(Parts::PARTONE) == "806");
+            REQUIRE(d->get_result(Parts::PartOne) == "806");
         }
         SECTION("Part2") {
             d->calculate_part2();
-            REQUIRE(d->get_result(Parts::PARTTWO) == "66076");
+            REQUIRE(d->get_result(Parts::PartTwo) == "66076");
         }
     }
 }

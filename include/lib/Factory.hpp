@@ -35,8 +35,8 @@ namespace AoC {
     public:
         Factory();
         ~Factory();
-        template<typename DAY, uint8_t ID> std::unique_ptr<Day> createDay();
-        std::unique_ptr<Day> createDay(uint8_t id);
+        template<typename DAY, int8_t Id> std::unique_ptr<Day> createDay();
+        std::unique_ptr<Day> createDay(int8_t id);
 
     private:
         struct Data {
