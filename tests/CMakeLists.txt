@@ -2,7 +2,7 @@ cmake_minimum_required (VERSION 3.5)
 project(AllTests)
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(SOURCE_FILES testMain.cpp
         2019/Day01_Tests.cpp

@@ -68,7 +68,7 @@ namespace Helper {
     ContainerOut str_to_num(std::unique_ptr<ContainerIn> pContIn) {
         ContainerIn & vIn = *pContIn;
         ContainerOut vOut;
-        auto to_num = [&vOut](const std::string & s){ vOut.emplace_back(std::stold(s)); };
+        auto to_num = [&vOut](const std::string & s){ vOut.emplace_back(std::stoi(s)); };
         std::for_each(begin(vIn), end(vIn), to_num);
         return vOut;
     }

@@ -2,7 +2,7 @@ cmake_minimum_required (VERSION 3.5)
 project(Main)
 
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(SOURCE_FILES main.cpp)
 set(INCLUDE_DIRS ../include/detail ../include/lib/interface ../include/lib ../include/lib/days)
