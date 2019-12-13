@@ -9,39 +9,38 @@ namespace AoC {
 
     using namespace Helper;
 
-    Day02::Day02(int8_t id, std::string name, std::string url,
-                 std::string data_file)
-            : Day(id,
-                  std::move(name),
-                  std::move(url),
-                  std::move(data_file)) {}
+    //experimenting with code readability :))
+    using std::unique_ptr, std::vector, std::string, std::optional, std::move;
+    using std::make_unique, std::make_optional, std::ifstream, std::to_string;
+    using std::begin, std::end, std::ios, std::cout;
+    //
 
+    Day02::Day02(int8_t id, string name, string url, string data_file)
+        : Day(id, move(name), move(url), move(data_file)) {
+    }
     Day02::~Day02() = default;
 
     template<typename Out>
-    std::optional<std::unique_ptr<Out>> Day02::parce_data(
-            std::string const& data_file_)
-    {
-        std::optional<std::unique_ptr<Out>> ret{nullptr};
-        auto in_file = std::ifstream(data_file_, std::ios::in | std::ios::binary);
-        if (in_file) {
-            using svData   = std::vector<std::string>;
-            auto s         = std::string {};
+    optional<unique_ptr<Out>> Day02::parce_data(string const& data_file_) {
+        if (auto in_file = ifstream(data_file_, ios::in | ios::binary);
+            in_file)
+        {
+            auto s = string {};
             in_file >> s;
-            auto sv_int_code {tokenize_by_delim<svData>(s, ",")};
-            auto contOut {str_to_num<svData, Out>(std::make_unique<svData>(sv_int_code))};
-            ret = std::make_optional<std::unique_ptr<Out>>(std::make_unique<Out>(contOut));
+            in_file.close();
+            using data_t     = vector<string>;
+            auto  s_opt_code = tokenize_by_delim<data_t>(s, ",");
+            auto  i_opt_code = str_to_num<data_t, Out>(make_unique<data_t>(s_opt_code));
+            return {make_optional<unique_ptr<Out>>(make_unique<Out>(i_opt_code))};
         }
-        in_file.close();
-        return ret;
+        return {};
     }
 
-    auto Day02::fix_intcode(std::unique_ptr<std::vector<int32_t>> int_code)
-            -> std::vector<int32_t>
+    auto Day02::fix_int_code(unique_ptr<vector<int32_t>> int_code)
+        -> std::unique_ptr<std::vector<int32_t>>
     {
-        std::vector<int32_t> &iv = *int_code;
-        for (auto i = std::begin(iv); i != std::end(iv); ++i) {
-            auto halt = bool{false};
+        auto& iv = *int_code;
+        for (auto i = begin(iv); i != end(iv); ++i) {
             switch (*i) {
                 case 1 : {
                     iv[*(i + 3)] = iv[*(i + 1)] + iv[*(i + 2)];
@@ -51,95 +50,57 @@ namespace AoC {
                     iv[*(i + 3)] = iv[*(i + 1)] * iv[*(i + 2)];
                     break;
                 }
+                case 99 : {
+                    return make_unique<vector<int32_t>>(iv);
+                }
                 default: {
-                    halt = true;
+                    cout << "Error: Unknown opp code.\n";
+                    return make_unique<vector<int32_t>>(iv);
                 }
             }
-            if (halt) break;
             i += 3;
         }
-        return std::move(iv);
+        return make_unique<vector<int32_t>>(iv);
     }
 
     void Day02::calculate_part1() {
-        auto op_data {parce_data<std::vector<int32_t>>(data_file)};
-        if (op_data.has_value()) {
-            auto p_data {std::make_unique<std::vector<int32_t>>(
-                    fix_intcode(std::move(*op_data)))
-            };
-            set_result(Parts::PartOne, std::to_string(p_data->at(0)));
+        using data_t = vector<int32_t>;
+        auto  o_data = parce_data<data_t>(data_file);
+        if (o_data.has_value()) {
+            auto p_data = fix_int_code(move(*o_data));
+            set_result(Parts::PartOne, to_string((*p_data)[0]));
         } else {
             set_result(Parts::PartOne, "Data file not found.");
         }
     }
 
     void Day02::calculate_part2() {
-        auto op_data {parce_data<std::vector<int32_t>>(data_file)};
-        auto noun = int32_t {0};
-        auto verb = int32_t {0};
-        auto v_size = static_cast<int32_t>(op_data->get()->size());
+        using data_t  = vector<int32_t>;
+        auto  op_data = parce_data<data_t>(data_file);
+        auto  noun    = int32_t {0};
+        auto  verb    = int32_t {0};
+        auto  v_size  = static_cast<int32_t>(op_data->get()->size());
         if (op_data.has_value()) {
-            //op_data.value()->at(1) = noun;
-            //op_data.value()->at(2) = verb;
-            for (int8_t i = 0; i <100; ++i){
-                op_data.value()->at(1) = i;
-                for (int8_t j = i; j <100; ++j){
-                    op_data.value()->at(2) = j;
-                    auto p_data {std::make_unique<std::vector<int32_t>>(
-                            fix_intcode(std::move(*op_data)))
-                    };
-                    if (p_data->at(0) == 19690720) {
-                        noun = i;
-                        verb = j;
+            for (int8_t i = 0; i < 100; ++i){
+                bool found = false;
+                for (int8_t j = 0; j < 100; ++j){
+                    auto p_data = make_unique<data_t>(*op_data.value());
+                    (*p_data)[1] = i;
+                    (*p_data)[2] = j;
+                    p_data = fix_int_code(move(p_data));
+                    if ((*p_data)[0] == 19690720) {
+                        noun  = i;
+                        verb  = j;
+                        found = true;
+                        break;
                     }
-                    if (j >= v_size) break;
+                    if (j == v_size) break;
                 }
-                if (i >= v_size) break;
+                if (i == v_size || found) break;
             }
-            //auto p_data {std::make_unique<std::vector<int32_t>>(
-            //        fix_intcode(std::move(*op_data)))
-            //};
-
-            set_result(Parts::PartTwo, std::to_string(100 * noun + verb));
+            set_result(Parts::PartTwo, to_string(100 * noun + verb));
         } else {
             set_result(Parts::PartTwo, "Data file not found.");
         }
     }
 }
-
-/*
- *     //int64_t idx{0};
-    //auto it = std::begin(def_v);
-
-    //while (it != end(def_v)) {
-    //    for (int8_t i = 0; i < 4; ++i) {
-    //        std::cout << def_v[idx + i] << " ";
-    //    }
-    //    std::cout << "\n";
-    //    if (std::distance(it, end(def_v)) > 4) {
-    //        it += 4;
-    //        idx += 4;
-
-    //    } else {
-    //        break;
-    //    }
-    //}
-
-    //idx = 0;
-    //it = std::begin(def_v);
-    //while (it != end(def_v)) {
-    //                int64_t oppcode = def_v[idx];
-    //                if (oppcode == 99) return 0;
-    //                int64_t first = def_v[idx + 1];
-    //                int64_t second = def_v[idx + 2];
-    //                int64_t third = def_v[idx + 3];
-    //                if (oppcode == 1) {
-    //                    def_v[third] = def_v[first] + def_v[second];
-    //                } else if (oppcode == 2) {
-    //                    def_v[third] = def_v[first] * def_v[second];
-    //                }
-
-    //    idx += 4;
-    //    if (std::distance(it, end(def_v)) < 4) it += 4;
-    //}
-    */

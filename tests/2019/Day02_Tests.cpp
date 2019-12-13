@@ -14,10 +14,7 @@ TEST_CASE("Day02", "[Day02]") {
             d->calculate_part1();
             REQUIRE(d->get_result(Parts::PartOne) == "2");
         }
-        SECTION("Part2") {
-            d->calculate_part2();
-            REQUIRE(d->get_result(Parts::PartTwo) == "");
-        }
+        //testing of part 2 on this data is not possible
     }
 
     SECTION("Test data from day02_2.txt") {
@@ -26,10 +23,7 @@ TEST_CASE("Day02", "[Day02]") {
             d->calculate_part1();
             REQUIRE(d->get_result(Parts::PartOne) == "30");
         }
-        SECTION("Part2") {
-            d->calculate_part2();
-            REQUIRE(d->get_result(Parts::PartTwo) == "");
-        }
+        //testing of part 2 on this data is not possible
     }
 
     SECTION("Test data from day02_3.txt") {
@@ -38,10 +32,7 @@ TEST_CASE("Day02", "[Day02]") {
             d->calculate_part1();
             REQUIRE(d->get_result(Parts::PartOne) == "3500");
         }
-        SECTION("Part2") {
-            d->calculate_part2();
-            REQUIRE(d->get_result(Parts::PartTwo) == "");
-        }
+        //testing of part 2 on this data is not possible
     }
 
 
@@ -53,7 +44,7 @@ TEST_CASE("Day02", "[Day02]") {
         }
         SECTION("Part2") {
             d->calculate_part2();
-            REQUIRE(d->get_result(Parts::PartTwo) == "");
+            REQUIRE(d->get_result(Parts::PartTwo) == "8444");
         }
     }
 }
