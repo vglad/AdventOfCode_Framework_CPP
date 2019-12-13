@@ -1,6 +1,7 @@
 #pragma once
-
 #include "Day.hpp"
+
+#include <optional>
 
 namespace AoC {
 
