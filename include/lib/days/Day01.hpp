@@ -1,8 +1,10 @@
 #pragma once
-#include "Day.hpp"
+
 
 #include <fstream>
 #include <cmath>
+
+#include "Day.hpp"
 
 namespace AoC {
 
